@@ -1,0 +1,14 @@
+.normal {
+  padding: 16px 20px;
+  background-color: greenyellow;
+}
+
+.warring {
+  padding: 16px 20px;
+  background-color: palevioletred;
+}
+
+.normal,
+.warring {
+  display: none;
+}

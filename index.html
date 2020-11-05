@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="stylesheet" href="index.css">
+  <title>PWA DEMO</title>
+</head>
+<body>
+  <div id='online' class='normal'>you are current online</div>
+  <div id='offline' class='warring'>you are current offline</div>
+  <p>pwa demo</p>
+  <button id="unregister" onClick="serviceWorker.unregister()">unregister</button>
+</body>
+  <script defer src='./register.js'></script>
+</html>
