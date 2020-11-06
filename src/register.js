@@ -132,3 +132,18 @@ window.addEventListener('offline', () => {
     offlineEle.style.display = 'none';
   }, 3000);
 });
+
+let normalTitle = document.title;
+document.addEventListener('visibilitychange', () => {
+  //浏览器tab切换监听事件
+  if (document.visibilityState == 'visible') {
+    //状态判断：显示（切换到当前页面）
+    // 切换到页面执行事件
+    document.title = normalTitle;
+  } else if (document.visibilityState == 'hidden') {
+    //状态判断：隐藏（离开当前页面）
+    // 离开页面执行事件
+    normalTitle = document.title;
+    document.title = '😂 你要离开我吗';
+  }
+});
