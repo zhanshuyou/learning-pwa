@@ -1,10 +1,50 @@
+/**
+ * 安装、激活
+ */
 self.addEventListener('install', (event) => {
-  event.waitUntil(self.skipWaiting());
+  event.waitUntil(
+    Promise.all([
+      self.skipWaiting(),
+      caches.open('offline-caches').then((cache) => {
+        return cache.addAll(['offline.html', 'images/offline.jpg']);
+      }),
+    ]),
+  );
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(self.clients.claim());
+  event.waitUntil(
+    Promise.all([
+      self.clients.claim(),
+      caches.open('offline-caches').then((cache) => {
+        return cache.addAll(['offline.html', 'images/offline.jpg']);
+      }),
+    ]),
+  );
 });
+
+/**
+ * 支持离线访问
+ */
+self.addEventListener('fetch', (event) => {
+  console.info(event.request.headers.get('accept'));
+  if (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html')) {
+    event.respondWith(
+      fetch(event.request.url).catch((error) => {
+        return caches.match('offline.html');
+      }),
+    );
+  } else if (event.request.method === 'GET' && event.request.headers.get('accept').includes('image')) {
+    event.respondWith(
+      fetch(event.request.url).catch((error) => {
+        return caches.match('images/offline.jpg');
+      }),
+    );
+  } else {
+    event.respondWith(fetch(event.request));
+  }
+});
+
 
 /**
  * .jpg|.png 的图片替换为 .webp
