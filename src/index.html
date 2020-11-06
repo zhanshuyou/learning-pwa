@@ -12,6 +12,54 @@
   <div id='offline' class='warring'>you are current offline</div>
   <p>pwa demo</p>
   <button id="unregister" onClick="serviceWorker.unregister()">unregister</button>
+
+  <!-- 音频、视频捕获 -->
+  <div style="display: flex;justify-content: space-around;margin-top: 100px;">
+    <section>
+      <div>
+        <button id="btnVi">捕获视频</button>
+      </div>
+      <video id="vi" controls width="350" height="200"></video>
+    </section>
+    <section>
+      <div>
+        <button id="btnPhoto">视频截图</button>
+      </div>
+      <img id="photo" style="border: 1px solid #aaa;width:350px;height:200px;" />
+    </section>
+    <section>
+      <div>
+        <button id="btnRecord">开始记录</button>
+        <button id="btnDownload">下载</button>
+      </div>
+    </section>
+    <section>
+      <div>
+        <button id="btnAu">捕获音频</button>
+      </div>
+      <audio id="au" controls></audio>
+    </section>
+  </div>
+
+  <div style="margin-top: 100px;">
+    <section>
+      <img id="image" style="border: 1px solid #aaa;" src="20201106121007.jpg" />
+      <div class="detectResult"></div>
+      <button id="btnDetect">检测</button>
+    </section>
+  </div>
+
+  <div style="border:1px solid #ccc; width: 350px; height: 200px;margin-top: 100px;">
+    <span id="content-final"></span>
+    <span id="content-tmp" style="color:gray"></span>
+  </div>
+  <div>
+    <button id="btn">开始语音识别</button>
+  </div>
+
 </body>
   <script defer src='./register.js'></script>
+  <script defer src='./media.js'></script>
+  <script defer src='./voice.js'></script>
+  <script defer src='./detect.js'></script>
 </html>

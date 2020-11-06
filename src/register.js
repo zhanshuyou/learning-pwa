@@ -69,13 +69,6 @@ navigator.serviceWorker.onmessageerror = () => {
   console.info('onmessageerror');
 };
 
-/**
- * https://developers.google.com/web/updates/2018/06/a2hs-updates
- */
-// window.addEventListener('beforeinstallprompt', (e) => {
-//   e.preventDefault();
-//   return false;
-// });
 window.addEventListener('beforeinstallprompt', function (e) {
   // log the platforms provided as options in an install prompt
   console.log(e.platforms); // e.g., ["web", "android", "windows"]
@@ -91,22 +84,21 @@ window.addEventListener('beforeinstallprompt', function (e) {
 
 Notification.requestPermission()
   .then(() => {
-    console.info('213');
-    const n = new Notification('今日新闻', {
-      body: '假期到来旅客人数突破新高~',
-      icon: 'icon.png',
-      requireInteraction: true,
-      data: {
-        nav: 'https://xxx.news.com/xxx.html', //自定义的属性
-      },
-    });
-    n.onclick = (event) => {
-      n.close();
-      if (event.currentTarget.data.nav) {
-        //获取自定义的属性
-        window.open(event.currentTarget.data.nav);
-      }
-    };
+    // const n = new Notification('今日新闻', {
+    //   body: '假期到来旅客人数突破新高~',
+    //   icon: 'icon.png',
+    //   requireInteraction: true,
+    //   data: {
+    //     nav: 'https://xxx.news.com/xxx.html', //自定义的属性
+    //   },
+    // });
+    // n.onclick = (event) => {
+    //   n.close();
+    //   if (event.currentTarget.data.nav) {
+    //     //获取自定义的属性
+    //     window.open(event.currentTarget.data.nav);
+    //   }
+    // };
   })
   .catch(() => {
     alert('通知权限已禁止，请设置打开权限');
@@ -138,4 +130,3 @@ window.addEventListener('offline', () => {
     offlineEle.style.display = 'none';
   }, 3000);
 });
-
