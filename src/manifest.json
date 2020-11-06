@@ -3,7 +3,7 @@
   "name": "这是一个完整名称",
   "icons": [
     {
-      "src": "144x144.png",
+      "src": "images/144x144.png",
       "type": "image/png",
       "sizes": "144x144"
     }

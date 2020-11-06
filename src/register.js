@@ -49,9 +49,11 @@ const serviceWorker = {
 
 serviceWorker.register();
 
-navigator.serviceWorker.controller.onstatechange = (state) => {
-  console.info('controller state: ', state);
-};
+if (navigator.serviceWorker.controller) {
+  navigator.serviceWorker.controller.onstatechange = (state) => {
+    console.info('controller state: ', state);
+  };
+}
 
 navigator.serviceWorker.ready.then((serviceWorkerRegistration) => {
   console.info('ready registration: ', serviceWorkerRegistration);
